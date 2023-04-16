@@ -103,7 +103,7 @@ class HalqaController extends Controller
 
             return response($response, 201);
         } else {
-            return response()->json(['error' => 'halqa not found.', 'success' => false], 404);
+            return response()->json(['error' => 'Something went wrong.', 'success' => false], 404);
         }
     }
 

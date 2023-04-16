@@ -12,16 +12,16 @@ class UserController extends Controller
 
         if (auth()->user()->user_role_id == 1) {
             $admins = User::where('user_role_id', 2)->with('userRole')->with('ammart')->with('halqa')->get();
-            $ammart_secteries = User::where('user_role_id', 3)->with('userRole')->with('ammart')->with('halqa')->get();
-            $halqa_secteries = User::where('user_role_id', 4)->with('userRole')->with('ammart')->with('halqa')->get();
+            $ammart_secretaries = User::where('user_role_id', 3)->with('userRole')->with('ammart')->with('halqa')->get();
+            $halqa_secretaries = User::where('user_role_id', 4)->with('userRole')->with('ammart')->with('halqa')->get();
 
             $data = array(
                 "admins" => $admins,
-                "ammart_secteries" => $ammart_secteries,
-                "halqa_secteries" => $halqa_secteries,
+                "ammart_secretaries" => $ammart_secretaries,
+                "halqa_secretaries" => $halqa_secretaries,
             );
 
-            if ($admins || $ammart_secteries || $halqa_secteries) {
+            if ($admins || $ammart_secretaries || $halqa_secretaries) {
 
                 $response = [
                     'data' => $data,
@@ -30,18 +30,18 @@ class UserController extends Controller
 
                 return response($response, 200);
             } else {
-                return response()->json(['error' => 'somthing went wrong', 'success' => false], 500);
+                return response()->json(['error' => 'Something went wrong', 'success' => false], 500);
             }
         } else if (auth()->user()->user_role_id == 2) {
-            $ammart_secteries = User::where('city', auth()->user()->city)->where('user_role_id', 3)->with('userRole')->with('ammart')->with('halqa')->get();
-            $halqa_secteries = User::where('city', auth()->user()->city)->where('user_role_id', 4)->with('userRole')->with('ammart')->with('halqa')->get();
+            $ammart_secretaries = User::where('city', auth()->user()->city)->where('user_role_id', 3)->with('userRole')->with('ammart')->with('halqa')->get();
+            $halqa_secretaries = User::where('city', auth()->user()->city)->where('user_role_id', 4)->with('userRole')->with('ammart')->with('halqa')->get();
 
             $data = array(
-                "ammart_secteries" => $ammart_secteries,
-                "halqa_secteries" => $halqa_secteries,
+                "ammart_secretaries" => $ammart_secretaries,
+                "halqa_secretaries" => $halqa_secretaries,
             );
 
-            if ($ammart_secteries || $halqa_secteries) {
+            if ($ammart_secretaries || $halqa_secretaries) {
 
                 $response = [
                     'data' => $data,
@@ -50,16 +50,16 @@ class UserController extends Controller
 
                 return response($response, 200);
             } else {
-                return response()->json(['error' => 'somthing went wrong', 'success' => false], 500);
+                return response()->json(['error' => 'Something went wrong', 'success' => false], 500);
             }
         } else {
-            $halqa_secteries = User::where('city', auth()->user()->city)->where('user_role_id', 4)->with('userRole')->with('ammart')->with('halqa')->get();
+            $halqa_secretaries = User::where('city', auth()->user()->city)->where('user_role_id', 4)->with('userRole')->with('ammart')->with('halqa')->get();
 
             $data = array(
-                "halqa_secteries" => $halqa_secteries,
+                "halqa_secretaries" => $halqa_secretaries,
             );
 
-            if ($halqa_secteries) {
+            if ($halqa_secretaries) {
 
                 $response = [
                     'data' => $data,
@@ -68,7 +68,7 @@ class UserController extends Controller
 
                 return response($response, 200);
             } else {
-                return response()->json(['error' => 'somthing went wrong', 'success' => false], 500);
+                return response()->json(['error' => 'Something went wrong', 'success' => false], 500);
             }
         }
     }

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BootController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AmmartController;
@@ -19,6 +20,8 @@ use App\Http\Controllers\StudantController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/boot', [BootController::class, 'bootSetting']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
